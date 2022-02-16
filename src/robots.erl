@@ -96,7 +96,7 @@ is_allowed(_Url, {ok, {allowed, all}}) ->
     true;
 is_allowed(Url, {ok, {Allowed, Disallowed}}) ->
     Match = fun(Rule) -> match(Url, Rule) end,
-    lists:any(Match, Allowed) orelse not lists:any(Match, Disallowed);
+    lists:any(Match, Allowed) and (not lists:any(Match, Disallowed));
 is_allowed(_Url, {error, _}) ->
     true.
 
